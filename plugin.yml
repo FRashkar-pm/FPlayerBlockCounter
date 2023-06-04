@@ -1,0 +1,11 @@
+name: FPlayerBlockCount
+api: [4.0.0, 5.0.0]
+version: 0.1.0
+main: FRashkar\FPlayerBlockCount\Loader
+author: FRashkar-pm
+
+permissions:
+  fplayerblockcount.command.settop:
+    default: op
+  fplayerblockcount.command.use:
+    defaut: true

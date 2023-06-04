@@ -1,0 +1,10 @@
+## CONFIGURATION ##
+
+## TAGS ##
+# {player} Player's name
+# {break} Block Break Player Count
+# {place} Block Place Player Count
+
+## MESSAGE ##
+message-break-tip: "{player} break: {break} blocks"
+message-place-tip: "{player} break: {place} blocks"
