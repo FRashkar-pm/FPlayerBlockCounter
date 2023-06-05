@@ -7,4 +7,4 @@
 
 ## MESSAGE ##
 message-break-tip: "{player} break: {break} blocks"
-message-place-tip: "{player} break: {place} blocks"
+message-place-tip: "{player} place: {place} blocks"

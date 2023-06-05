@@ -14,8 +14,9 @@
 * Discord: FireRashkar#1519
 */
 
-namespace FRashkar\FPlayerBlockCount\NPC;
+namespace FRashkar\FPlayerBlockCount\Entities;
 
+use FRashkar\FPlayerBlockCount\Loader;
 use pocketmine\entity\Human;
 
 class TopPlaceNPC extends Human

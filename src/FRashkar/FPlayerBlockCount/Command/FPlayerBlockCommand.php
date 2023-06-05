@@ -51,7 +51,7 @@ class FPlayerBlockCommand extends Command implements PluginOwned
                             {
                                 $pbreak = $this->loader->getBlockBreakPlayer($pname);
                                 $pplace = $this->loader->getBlockPlacePlayer($pname);
-                                $sender->sendMessage(">> STATISTICS <<" . "\n" . "$pname break: $ppbreak blocks." . "\n" . "$pname place: $pplace blocks.");
+                                $sender->sendMessage(">> STATISTICS <<" . "\n" . "$pname break: $pbreak blocks." . "\n" . "$pname place: $pplace blocks.");
                             } else {
                                 $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_CONSOLE);
                             }

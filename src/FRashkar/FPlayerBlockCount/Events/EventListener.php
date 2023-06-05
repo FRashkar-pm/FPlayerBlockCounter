@@ -50,7 +50,7 @@ class EventListener implements Listener
     public function onBlockBreak(BlockBreakEvent $event)
     {
         $player = $event->getPlayer();
-        $break = $this->addBlockBreak($event);
+        $break = $this->addBlockBreak($player);
         $tipbreak = $this->loader->getConfig()->get("message-break-tip");
         $msg = str_replace(["{player}", "{break}"], [$player->getName(), $break], $tipbreak);
         $player->sendTip($msg);
@@ -59,7 +59,7 @@ class EventListener implements Listener
     public function onBlockPlace(BlockPlaceEvent $event)
     {
         $player = $event->getPlayer();
-        $place = $this->addBlockPlace($event);
+        $place = $this->addBlockPlace($player);
         $tipplace = $this->loader->getConfig()->get("message-place-tip");
         $msg = str_replace(["{player}", "{place}"], [$player->getName(), $place], $tipplace);
         $player->sendTip($msg);

@@ -16,8 +16,9 @@
 
 namespace FRashkar\FPlayerBlockCount;
 
-use FRashkar\FPlayerBlockCount\Command\FPlayerBlockCommnad;
+use FRashkar\FPlayerBlockCount\Command\FPlayerBlockCommand;
 use FRashkar\FPlayerBlockCount\Events\EventListener;
+use FRashkar\FPlayerBlockCount\Entities\{TopBreakNPC, TopPlaceNPC};
 use pocketmine\entity\{EntityDataHelper, EntityFactory, Human, Skin};
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\player\Player;
@@ -40,7 +41,7 @@ class Loader extends PluginBase
     {
         self::setInstance($this);
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this));
-        $this->getServer()->getCommandMap()->register("fplayer", new FPlayerBlockCommnad($this));
+        $this->getServer()->getCommandMap()->register("fplayerblockcount", new FPlayerBlockCommand($this));
         $this->rbreak = new Config($this->getDataFolder() . "/break.yml", Config::YAML);
         $this->rplace = new Config($this->getDataFolder() . "/place.yml", Config::YAML);
         $this->saveDefaultConfig();
@@ -56,7 +57,7 @@ class Loader extends PluginBase
         }, ["humanclass::npcentityplace"]);
     }
 
-    public static function getTopBlockBreak(): string
+    public function getTopBlockBreak(): string
     {
         $data = $this->rbreak->getAll();
         if (count($data) > 0)
@@ -78,7 +79,7 @@ class Loader extends PluginBase
         }
     }
 
-    public static function getTopBlockPlace(): string
+    public function getTopBlockPlace(): string
     {
         $data = $this->rplace->getAll();
         if (count($data) > 0)
@@ -100,7 +101,7 @@ class Loader extends PluginBase
         }
     }
 
-    public static function getBlockBreakPlayer(string $playerName): string
+    public function getBlockBreakPlayer(string $playerName): string
     {
         $data = $this->rbreak->getAll();
         foreach ($data as $name => $value)
@@ -109,7 +110,7 @@ class Loader extends PluginBase
         }
     }
 
-    public static function getBlockPlacePlayer(string $playerName): string
+    public function getBlockPlacePlayer(string $playerName): string
     {
         $data = $this->rplace->getAll();
         foreach ($data as $name => $value)
@@ -118,8 +119,9 @@ class Loader extends PluginBase
         }
     }
 
-    public static function getTopPlayer(Player $player)
+    public function getTopPlayer(Player $player)
     {
         //getTopPlayer for NPC
+        //soon
     }
 }
