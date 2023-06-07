@@ -74,9 +74,10 @@ class Loader extends PluginBase
                     break;
                 }
                 ++$num;
-                return $msg;
             }
         }
+
+        return $msg;
     }
 
     public function getTopBlockPlace(): string
@@ -96,27 +97,36 @@ class Loader extends PluginBase
                     break;
                 }
                 ++$num;
-                return $msg;
             }
         }
+
+        return $msg;
     }
 
-    public function getBlockBreakPlayer(string $playerName): string
+    public function getBlockBreakPlayer(string $playerName, array $data): string
     {
-        $data = $this->rbreak->getAll();
         foreach ($data as $name => $value)
         {
-            if ($name === $playerName) return "$value";
+            if ($name === $playerName) 
+            {
+                return "$value";
+            }
         }
+
+        return "Player not found";
     }
 
-    public function getBlockPlacePlayer(string $playerName): string
+    public function getBlockPlacePlayer(string $playerName, array $data): string
     {
-        $data = $this->rplace->getAll();
         foreach ($data as $name => $value)
         {
-            if ($name === $playerName) return "$value";
+            if ($name === $playerName) 
+            {
+                return "$value";
+            }
         }
+
+        return "Player not found";
     }
 
     public function getTopPlayer(Player $player)

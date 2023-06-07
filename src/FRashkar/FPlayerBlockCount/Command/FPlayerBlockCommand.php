@@ -49,8 +49,10 @@ class FPlayerBlockCommand extends Command implements PluginOwned
                         case "$pname":
                             if ($sender instanceof Player)
                             {
-                                $pbreak = $this->loader->getBlockBreakPlayer($pname);
-                                $pplace = $this->loader->getBlockPlacePlayer($pname);
+                                $datab = $this->loader->rbreak->getAll();
+                                $datap = $this->loader->rplace->getAll();
+                                $pbreak = $this->loader->getBlockBreakPlayer($pname, $datab);
+                                $pplace = $this->loader->getBlockPlacePlayer($pname, $datap);
                                 $sender->sendMessage(">> STATISTICS <<" . "\n" . "$pname break: $pbreak blocks." . "\n" . "$pname place: $pplace blocks.");
                             } else {
                                 $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_CONSOLE);

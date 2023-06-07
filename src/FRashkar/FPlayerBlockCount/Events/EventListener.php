@@ -54,6 +54,8 @@ class EventListener implements Listener
         $tipbreak = $this->loader->getConfig()->get("message-break-tip");
         $msg = str_replace(["{player}", "{break}"], [$player->getName(), $break], $tipbreak);
         $player->sendTip($msg);
+
+        return;
     }
 
     public function onBlockPlace(BlockPlaceEvent $event)
@@ -63,9 +65,11 @@ class EventListener implements Listener
         $tipplace = $this->loader->getConfig()->get("message-place-tip");
         $msg = str_replace(["{player}", "{place}"], [$player->getName(), $place], $tipplace);
         $player->sendTip($msg);
+
+        return;
     }
 
-    public function addBlockBreak(Player $player)
+    public function addBlockBreak(Player $player): int
     {
         $rb = $this->loader->rbreak;
         $rb->set($player->getName(), $rb->get($player->getName()) +1);
@@ -84,16 +88,18 @@ class EventListener implements Listener
             $rb->set($name, $value);
             $rb->save();
         }
+        
+        return $rb->get($player->getName());
     }
 
-    public function addBlockPlace(Player $player)
+    public function addBlockPlace(Player $player): int
     {
         $rp = $this->loader->rplace;
         $rp->set($player->getName(), $rp->get($player->getName()) +1);
         $rp->save();
 
         $array = [];
-        foreach ($rp->getAll as $name => $value)
+        foreach ($rp->getAll() as $name => $value)
         {
             $array[$name] = $value;
             $rp->remove($name);
@@ -105,5 +111,7 @@ class EventListener implements Listener
             $rp->set($name, $value);
             $rp->save();
         }
+
+        return $rp->get($player->getName());
     }
 }
