@@ -36,11 +36,12 @@ class Loader extends PluginBase
     public const FPLAYERBLOCKCOUNT_CONSOLE = "Use this command in-game please!";
     public const FPLAYERBLOCKCOUNT_NO_PERMS = "You don't have permission to use this command!";
     public const FPLAYERBLOCKCOUNT_NO_PLAYER = "There are no player with that name!";
+    public const FPLAYERBLOCKCOUNT_USAGE = "/fplayerblockcount <player|settop|top>";
 
     public function onEnable(): void
     {
         self::setInstance($this);
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this));
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $this->getServer()->getCommandMap()->register("fplayerblockcount", new FPlayerBlockCommand($this));
         $this->rbreak = new Config($this->getDataFolder() . "/break.yml", Config::YAML);
         $this->rplace = new Config($this->getDataFolder() . "/place.yml", Config::YAML);
@@ -60,6 +61,8 @@ class Loader extends PluginBase
     public function getTopBlockBreak(): string
     {
         $data = $this->rbreak->getAll();
+        $msg = '';
+
         if (count($data) > 0)
         {
             arsort($data);
@@ -83,6 +86,8 @@ class Loader extends PluginBase
     public function getTopBlockPlace(): string
     {
         $data = $this->rplace->getAll();
+        $msg = '';
+
         if (count($data) > 0)
         {
             arsort($data);

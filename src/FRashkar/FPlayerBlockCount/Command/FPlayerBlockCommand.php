@@ -14,7 +14,7 @@
 * Discord: FireRashkar#1519
 */
 
-namespace FRashkar\FPlayerBlockCounter\Command;
+namespace FRashkar\FPlayerBlockCount\Command;
 
 use FRashkar\FPlayerBlockCount\Loader;
 use pocketmine\command\{Command, CommandSender};
@@ -39,47 +39,45 @@ class FPlayerBlockCommand extends Command implements PluginOwned
 
         if (isset($args[0]))
         {
+            $player = $this->loader->getServer()->getPlayerByPrefix($args[0]);
+            if ($player instanceof Player)
+            {
+                $pname = $player->getName();
+                $datab = $this->loader->rbreak->getAll();
+                $datap = $this->loader->rplace->getAll();
+                $pbreak = $this->loader->getBlockBreakPlayer($pname, $datab);
+                $pplace = $this->loader->getBlockPlacePlayer($pname, $datap);
+                $sender->sendMessage(">> STATISTICS <<" . "\n" . "$pname break: $pbreak blocks." . "\n" . "$pname place: $pplace blocks.");
+            } else {
+                //$sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_NO_PLAYER);
+            }
             foreach ($this->loader->getServer()->getOnlinePlayers() as $players)
             {
-                if ($players instanceof Player)
+                switch (strtolower($args[0]))
                 {
-                    $pname = $players->getName();
-                    switch (strtolower($args[0]))
-                    {
-                        case "$pname":
-                            if ($sender instanceof Player)
-                            {
-                                $datab = $this->loader->rbreak->getAll();
-                                $datap = $this->loader->rplace->getAll();
-                                $pbreak = $this->loader->getBlockBreakPlayer($pname, $datab);
-                                $pplace = $this->loader->getBlockPlacePlayer($pname, $datap);
-                                $sender->sendMessage(">> STATISTICS <<" . "\n" . "$pname break: $pbreak blocks." . "\n" . "$pname place: $pplace blocks.");
-                            } else {
-                                $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_CONSOLE);
-                            }
-                            break;
-                        case "settop":
-                            if (!$sender->hasPermission("fplayerblockcount.command.settop"))
-                            {
-                                $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_NO_PERMS);
-                            } else {
-                                // TopPlayerBlockCount Leader Board With NPC
-                                // Soon!
-                            }
-                            break;
-                        case "top":
-                            if ($sender instanceof Player)
-                            {
-                                $topbreak = $this->loader->getTopBlockBreak();
-                                $topplace = $this->loader->getTopBlockPlace();
-                                $sender->sendMessage(">> Top Block Leaderboard <<" . "$topbreak" . "/n" . "$topplace");
-                            } else {
-                                $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_CONSOLE);
-                            }
-                            break;
-                    }
+                    case "settop":
+                        if (!$sender->hasPermission("fplayerblockcount.command.settop"))
+                        {
+                            $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_NO_PERMS);
+                        } else {
+                            // TopPlayerBlockCount Leader Board With NPC
+                            // Soon!
+                        }
+                        break;
+                    case "top":
+                        if ($sender instanceof Player)
+                        {
+                            $topbreak = $this->loader->getTopBlockBreak();
+                            $topplace = $this->loader->getTopBlockPlace();
+                            $sender->sendMessage(">> Top Block Leaderboard <<" . "\n" . "$topbreak" . "\n" . "$topplace");
+                        } else {
+                            $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_CONSOLE);
+                        }
+                        break;
                 }
             }
+        } else {
+            $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_USAGE);
         }
     }
 
