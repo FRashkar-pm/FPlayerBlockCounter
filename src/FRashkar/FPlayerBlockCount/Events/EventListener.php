@@ -65,8 +65,6 @@ class EventListener implements Listener
         $tipplace = $this->loader->getConfig()->get("message-place-tip");
         $msg = str_replace(["{player}", "{place}"], [$player->getName(), $place], $tipplace);
         $player->sendTip($msg);
-
-        return;
     }
 
     public function addBlockBreak(Player $player): int

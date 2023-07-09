@@ -153,7 +153,7 @@ class Loader extends PluginBase
         return "Player not found";
     }
 
-    public function getPlayerSkin(string $playerName) : Skin
+    public function getPlayerSkin(string $playerName) : ?Skin
     {
         $player = $this->getServer()->getPlayerByPrefix($playerName);
         if ($player instanceof Player)
