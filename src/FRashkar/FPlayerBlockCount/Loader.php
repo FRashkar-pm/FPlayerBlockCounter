@@ -129,9 +129,51 @@ class Loader extends PluginBase
         return "Player not found";
     }
 
-    public function getTopPlayer(Player $player)
+    public function getTopBlockBreakPlayerName() : string
     {
-        //getTopPlayer for NPC
-        //soon
+        $data = $this->rbreak->getAll();
+        if (count($data) > 0)
+        {
+            arsort($data);
+            $num = 1;
+
+            foreach ($data as $name => $value)
+            {
+                if ($num === 1)
+                {
+                    return $name;
+                }
+            }
+        }
+        return "Player not found";
+    }
+
+    public function getPlayerSkin(string $playerName) : Skin
+    {
+        $player = $this->getServer()->getPlayerByPrefix($playerName);
+        if ($player instanceof Player)
+        {
+            return $player->getSkin();
+        }
+        return null;
+    }
+
+    public function getTopBlockPlacePlayerName() : string
+    {
+        $data = $this->rbreak->getAll();
+        if (count($data) > 0)
+        {
+            arsort($data);
+            $num = 1;
+
+            foreach ($data as $name => $value)
+            {
+                if ($num === 1)
+                {
+                    return $name;
+                }
+            }
+        }
+        return "Player not found";
     }
 }
