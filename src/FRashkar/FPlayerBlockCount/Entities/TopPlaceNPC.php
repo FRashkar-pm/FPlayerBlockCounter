@@ -21,5 +21,11 @@ use pocketmine\entity\Human;
 
 class TopPlaceNPC extends Human
 {
+    /** @var Loader $loader */
+    private $loader;
 
+    public function __construct(Loader $loader)
+    {
+        $this->loader = $loader;
+    }
 }

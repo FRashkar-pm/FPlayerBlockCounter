@@ -60,8 +60,7 @@ class FPlayerBlockCommand extends Command implements PluginOwned
                         {
                             $sender->sendMessage(Loader::FPLAYERBLOCKCOUNT_NO_PERMS);
                         } else {
-                            // TopPlayerBlockCount Leader Board With NPC
-                            // Soon!
+                            $pos = $sender->getPosition();
                         }
                         break;
                     case "top":
