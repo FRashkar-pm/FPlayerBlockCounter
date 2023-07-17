@@ -24,8 +24,8 @@ use FRashkar\FPlayerBlockCount\Loader;
 
 class EventListener implements Listener
 {
-    /** @var Loader */
-    public Loader $loader;
+    /** @var Loader $loader */
+    private $loader;
 
     public function __construct(Loader $loader)
     {

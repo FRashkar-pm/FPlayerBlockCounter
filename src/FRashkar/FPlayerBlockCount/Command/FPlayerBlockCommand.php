@@ -23,8 +23,8 @@ use pocketmine\plugin\{Plugin, PluginOwned};
 
 class FPlayerBlockCommand extends Command implements PluginOwned
 {
-    /** @var Loader */
-    public Loader $loader;
+    /** @var Loader $loader */
+    private $loader;
 
     public function __construct(Loader $loader)
     {
@@ -82,6 +82,6 @@ class FPlayerBlockCommand extends Command implements PluginOwned
 
     public function getOwningPlugin(): Plugin
     {
-        return Loader::getInstance();
+        return $this->loader;
     }
 }
