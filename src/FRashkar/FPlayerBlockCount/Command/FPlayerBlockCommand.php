@@ -80,7 +80,7 @@ class FPlayerBlockCommand extends Command implements PluginOwned
         }
     }
 
-    public function getOwningPlugin(): Plugin
+    public function getOwningPlugin() : Plugin
     {
         return $this->loader;
     }

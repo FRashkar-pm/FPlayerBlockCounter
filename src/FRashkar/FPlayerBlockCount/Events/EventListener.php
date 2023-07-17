@@ -32,7 +32,7 @@ class EventListener implements Listener
         $this->loader = $loader;
     }
 
-    public function onJoin(PlayerJoinEvent $event)
+    public function onJoin(PlayerJoinEvent $event) : void
     {
         $player = $event->getPlayer();
         if (!$this->loader->rbreak->get($player->getName()))
@@ -47,7 +47,7 @@ class EventListener implements Listener
         }
     }
 
-    public function onBlockBreak(BlockBreakEvent $event)
+    public function onBlockBreak(BlockBreakEvent $event) : void
     {
         $player = $event->getPlayer();
         $break = $this->addBlockBreak($player);
@@ -56,7 +56,7 @@ class EventListener implements Listener
         $player->sendTip($msg);
     }
 
-    public function onBlockPlace(BlockPlaceEvent $event)
+    public function onBlockPlace(BlockPlaceEvent $event) : void
     {
         $player = $event->getPlayer();
         $place = $this->addBlockPlace($player);
@@ -65,7 +65,7 @@ class EventListener implements Listener
         $player->sendTip($msg);
     }
 
-    public function addBlockBreak(Player $player): int
+    public function addBlockBreak(Player $player) : int
     {
         $rb = $this->loader->rbreak;
         $rb->set($player->getName(), $rb->get($player->getName()) +1);
@@ -88,7 +88,7 @@ class EventListener implements Listener
         return $rb->get($player->getName());
     }
 
-    public function addBlockPlace(Player $player): int
+    public function addBlockPlace(Player $player) : int
     {
         $rp = $this->loader->rplace;
         $rp->set($player->getName(), $rp->get($player->getName()) +1);

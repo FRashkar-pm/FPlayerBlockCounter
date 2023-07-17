@@ -8,4 +8,4 @@ permissions:
   fplayerblockcount.command.settop:
     default: op
   fplayerblockcount.command.use:
-    defaut: true
+    default: true

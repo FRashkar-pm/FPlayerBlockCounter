@@ -38,7 +38,7 @@ class Loader extends PluginBase
     public const FPLAYERBLOCKCOUNT_NO_PLAYER = "There are no player with that name!";
     public const FPLAYERBLOCKCOUNT_USAGE = "/fplayerblockcount <player|settop|top>";
 
-    public function onEnable(): void
+    public function onEnable() : void
     {
         self::setInstance($this);
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
@@ -58,7 +58,7 @@ class Loader extends PluginBase
         }, ["humanclass::npcentityplace"]);
     }
 
-    public function getTopBlockBreak(): string
+    public function getTopBlockBreak() : string
     {
         $data = $this->rbreak->getAll();
         $msg = '';
@@ -83,7 +83,7 @@ class Loader extends PluginBase
         return $msg;
     }
 
-    public function getTopBlockPlace(): string
+    public function getTopBlockPlace() : string
     {
         $data = $this->rplace->getAll();
         $msg = '';
@@ -108,7 +108,7 @@ class Loader extends PluginBase
         return $msg;
     }
 
-    public function getBlockBreakPlayer(string $playerName, array $data): string
+    public function getBlockBreakPlayer(string $playerName, array $data) : string
     {
         foreach ($data as $name => $value)
         {
@@ -121,7 +121,7 @@ class Loader extends PluginBase
         return "Player not found";
     }
 
-    public function getBlockPlacePlayer(string $playerName, array $data): string
+    public function getBlockPlacePlayer(string $playerName, array $data) : string
     {
         foreach ($data as $name => $value)
         {
